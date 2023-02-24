@@ -14,7 +14,7 @@ export default function Home() {
         <title>TODO: page title</title>
       </Head>
       <Stack p={4}>
-        <Heading>WDB Next.js Template</Heading>
+        <Heading>Bootcamp Project Spring 2023!!!</Heading>
         <Box>
           <Button variant="blue" onClick={() => setChild({})}>
             {(child as ReactNode) ?? "Test error handling"}
