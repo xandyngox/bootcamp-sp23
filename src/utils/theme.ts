@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
   colors: {
-    TODO: {
+    notiom: {
       blue: "#1e40af",
       lightBlue: "#456ced",
     },
@@ -42,12 +42,12 @@ export const theme = extendTheme({
     Button: {
       variants: {
         blue: {
-          bg: "TODO.blue",
+          bg: "notiom.blue",
           color: "white",
           _hover: {
-            bg: "TODO.lightBlue",
+            bg: "notiom.lightBlue",
             _active: {
-              bg: "TODO.lightBlue",
+              bg: "notiom.lightBlue",
             },
           },
         },
