@@ -3,10 +3,13 @@ import { extendTheme } from "@chakra-ui/react";
 export const theme = extendTheme({
   colors: {
     notiom: {
-      blue: "#1e40af",
-      lightBlue: "#456ced",
+      blue: "#2F80ED",
+      dgrey: "#545454",
+      mgrey: "#A3A3A3",
+      lgrey: "#F8F8F8",
     },
   },
+
   fonts: {
     heading: "Inter, sans-serif",
     body: "Inter, sans-serif",
