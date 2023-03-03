@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Text } from "@chakra-ui/layout";
 import {
   Center,
   Flex,
@@ -14,24 +14,28 @@ import { ReactNode, useState } from "react";
 import ButtonLink from "../components/utils/ButtonLink";
 import NextLink from "../components/utils/NextLink";
 import Card from "../components/utils/Card";
+import CardButton from "../components/utils/CardButton";
 
 export default function Home() {
-  const [data, setData] = useState({
+  const [state, setState] = useState({
     cards: [
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
-      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
+      { description: "Lorem ipsum dolor sit amet, consectetur" },
     ],
   });
+
+  const renderedCards = state.cards.map((item) => (
+    <Card description={item.description} />
+  ));
 
   return (
     <>
@@ -59,10 +63,10 @@ export default function Home() {
         </Flex>
         <Center>
           <VStack spacing="43px" my={20}>
-            <Heading fontSize="60px" color="notiom.dgrey">
+            <Heading fontWeight="600" fontSize="60px" color="notiom.dgrey">
               Create. Explore.
             </Heading>
-            <Heading fontSize="40px" color="notiom.dgrey">
+            <Heading fontWeight="500" fontSize="40px" color="notiom.dgrey">
               The document editing software you’ve been waiting for
             </Heading>
           </VStack>
@@ -70,12 +74,13 @@ export default function Home() {
 
         <Box minHeight="50vh" backgroundColor="white">
           {/* centering cards grid */}
-          <Flex w="100%" justify="center" direction="row">
+          <Center w="100%">
             {/* grid of cards */}
             <SimpleGrid columns={6} spacing={10} padding="50px">
-              {data.cards}
+              <CardButton />
+              {renderedCards}
             </SimpleGrid>
-          </Flex>
+          </Center>
         </Box>
       </Box>
     </>
