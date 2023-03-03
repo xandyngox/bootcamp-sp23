@@ -1,16 +1,12 @@
-import { Box, Stack, Heading } from "@chakra-ui/layout";
+import { Box, Heading } from "@chakra-ui/layout";
 import {
-  Button,
   Center,
   Flex,
   Spacer,
-  Text,
   VStack,
-  Icon,
-  IconProps,
-  createIcon,
   Image,
   HStack,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { ReactNode, useState } from "react";
@@ -20,7 +16,22 @@ import NextLink from "../components/utils/NextLink";
 import Card from "../components/utils/Card";
 
 export default function Home() {
-  const [child, setChild] = useState<object | null>(null);
+  const [data, setData] = useState({
+    cards: [
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+      <Card description="Lorem ipsum dolor sit amet, consectetur" />,
+    ],
+  });
 
   return (
     <>
@@ -46,13 +57,6 @@ export default function Home() {
             </ButtonLink>
           </Box>
         </Flex>
-
-        {/* <Box>
-            <Button variant="blue" onClick={() => setChild({})}>
-              {(child as ReactNode) ?? "Test error handling"}
-            </Button>
-          </Box> */}
-
         <Center>
           <VStack spacing="43px" my={20}>
             <Heading fontSize="60px" color="notiom.dgrey">
@@ -63,40 +67,14 @@ export default function Home() {
             </Heading>
           </VStack>
         </Center>
-        {/* <Box>
-          <NextLink href="/random-route" color="TODO.blue">
-            Test 404 Page
-          </NextLink>
-        </Box> */}
 
-        <Box height="50vh" backgroundColor="white">
-          {/* centering the entire cards div */}
+        <Box minHeight="50vh" backgroundColor="white">
+          {/* centering cards grid */}
           <Flex w="100%" justify="center" direction="row">
-            {/* flexbox holding the columns of cards */}
-            <Flex
-              w="1410px"
-              h="350px"
-              justify="space-between"
-              direction="column"
-              m={10}
-            >
-              <Flex w="100%" justify="space-between">
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              </Flex>
-              <Flex w="100%" justify="space-between">
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-                <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              </Flex>
-            </Flex>
+            {/* grid of cards */}
+            <SimpleGrid columns={6} spacing={10} padding="50px">
+              {data.cards}
+            </SimpleGrid>
           </Flex>
         </Box>
       </Box>
