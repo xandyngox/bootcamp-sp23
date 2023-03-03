@@ -9,6 +9,8 @@ import {
   Icon,
   IconProps,
   createIcon,
+  Image,
+  HStack,
 } from "@chakra-ui/react";
 import Head from "next/head";
 import { ReactNode, useState } from "react";
@@ -26,62 +28,78 @@ export default function Home() {
         <title>Create. Explore.</title>
       </Head>
 
-      <Flex>
-        <Box>
-          <Icon src="../../public/images/Vector.svg" />
-        </Box>
-        <Spacer />
-        <Box>
-          <ButtonLink href="/test" variant="blue">
-            Create
-          </ButtonLink>
-        </Box>
-      </Flex>
+      <Box height="100vh" backgroundColor="notiom.lgrey">
+        <Flex>
+          <Box mt={5} ml={5}>
+            <HStack>
+              <Image boxSize="40px" src="/Vector.jpg" alt="Vector.jpg" />
 
-      <Stack p={4}>
+              <Heading fontSize="30px" color="notiom.dgrey">
+                Notiom
+              </Heading>
+            </HStack>
+          </Box>
+          <Spacer />
+          <Box>
+            <ButtonLink href="/test" variant="blue" mt={5} mr={5}>
+              Create
+            </ButtonLink>
+          </Box>
+        </Flex>
+
         {/* <Box>
-          <Button variant="blue" onClick={() => setChild({})}>
-            {(child as ReactNode) ?? "Test error handling"}
-          </Button>
-        </Box> */}
+            <Button variant="blue" onClick={() => setChild({})}>
+              {(child as ReactNode) ?? "Test error handling"}
+            </Button>
+          </Box> */}
 
         <Center>
-          <VStack spacing="43px">
-            <Heading fontSize="60px">Create. Explore.</Heading>
-            <Text fontSize="52px">
+          <VStack spacing="43px" my={20}>
+            <Heading fontSize="60px" color="notiom.dgrey">
+              Create. Explore.
+            </Heading>
+            <Heading fontSize="40px" color="notiom.dgrey">
               The document editing software you’ve been waiting for
-            </Text>
+            </Heading>
           </VStack>
         </Center>
-
         {/* <Box>
           <NextLink href="/random-route" color="TODO.blue">
             Test 404 Page
           </NextLink>
         </Box> */}
-        {/* centering the entire cards div */}
-        <Flex w="100%" justify="center" direction="row">
-          {/* flexbox holding the columns of cards */}
-          <Flex w="1410px" h="350px" justify="space-between" direction="column">
-            <Flex w="100%" justify="space-between">
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-            </Flex>
-            <Flex w="100%" justify="space-between">
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
-              <Card description="Lorem ipsum dolor sit amet, consectetur" />
+
+        <Box height="50vh" backgroundColor="white">
+          {/* centering the entire cards div */}
+          <Flex w="100%" justify="center" direction="row">
+            {/* flexbox holding the columns of cards */}
+            <Flex
+              w="1410px"
+              h="350px"
+              justify="space-between"
+              direction="column"
+              m={10}
+            >
+              <Flex w="100%" justify="space-between">
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+              </Flex>
+              <Flex w="100%" justify="space-between">
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+                <Card description="Lorem ipsum dolor sit amet, consectetur" />
+              </Flex>
             </Flex>
           </Flex>
-        </Flex>
-      </Stack>
+        </Box>
+      </Box>
     </>
   );
 }
