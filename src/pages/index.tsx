@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/layout";
+import { Box, Heading } from "@chakra-ui/layout";
 import {
   Center,
   Flex,
@@ -8,40 +8,47 @@ import {
   Image,
   HStack,
   SimpleGrid,
+  ModalOverlay,
+  Modal,
+  Input,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
-import ButtonLink from "../components/utils/ButtonLink";
-import NextLink from "../components/utils/NextLink";
 import Card from "../components/utils/Card";
-import CardButton from "../components/utils/CardButton";
 
 export default function Home() {
-  const [state, setState] = useState({
-    cards: [
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-      { description: "Lorem ipsum dolor sit amet, consectetur" },
-    ],
-  });
+  const [text, setText] = useState("");
+  const [cards, setCards] = useState([]);
 
-  const renderedCards = state.cards.map((item) => (
+  // const removeCard = (deleteId: number) => {
+  //   delete cards.find(({ id }) => id === deleteId);
+  // };
+
+  const renderedCards = cards.map((item) => (
     <Card description={item.description} />
   ));
 
-  const test = () => {
-    console.log("please work");
+  const addCard = () => {
+    const newId = cards.length;
+    const newDescription = text.split(" ").slice(0, 5).join(" ");
+    const newCard = { id: newId, description: newDescription };
+    setCards([...cards, newCard]);
   };
-  test();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlenewpage = () => {
+    // Call all the functions you want to trigger
+    addCard();
+    onClose();
+  };
 
   return (
     <>
@@ -54,7 +61,6 @@ export default function Home() {
           <Box mt={5} ml={5}>
             <HStack>
               <Image boxSize="40px" src="/Vector.jpg" alt="Vector.jpg" />
-
               <Heading fontSize="30px" color="notiom.dgrey">
                 Notiom
               </Heading>
@@ -62,7 +68,7 @@ export default function Home() {
           </Box>
           <Spacer />
           <Box>
-            <Button variant="blue" mt={5} mr={5}>
+            <Button onClick={onOpen} variant="blue" mt={5} mr={5}>
               Create
             </Button>
           </Box>
@@ -77,13 +83,44 @@ export default function Home() {
             </Heading>
           </VStack>
         </Center>
-
         <Box minHeight="50vh" backgroundColor="white">
           {/* centering cards grid */}
           <Center w="100%">
             {/* grid of cards */}
             <SimpleGrid columns={6} spacing={10} padding="50px">
-              <CardButton />
+              <Button
+                onClick={onOpen}
+                textAlign="left"
+                width="150px"
+                height="150px"
+                backgroundColor="notiom.blue"
+                borderRadius="10px"
+                backgroundImage="/CardButton.svg"
+              />
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Create new card</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Input
+                      placeholder="Type your new document here!"
+                      size="sm"
+                      onChange={(e) => setText(e.target.value)}
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      backgroundColor="notiom.blue"
+                      color="white"
+                      mr={3}
+                      onClick={handlenewpage}
+                    >
+                      Create
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
               {renderedCards}
             </SimpleGrid>
           </Center>
