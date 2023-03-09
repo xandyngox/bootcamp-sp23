@@ -3,6 +3,7 @@ import {
   Center,
   Flex,
   Spacer,
+  Button,
   VStack,
   Image,
   HStack,
@@ -37,6 +38,11 @@ export default function Home() {
     <Card description={item.description} />
   ));
 
+  const test = () => {
+    console.log("please work");
+  };
+  test();
+
   return (
     <>
       <Head>
@@ -56,9 +62,9 @@ export default function Home() {
           </Box>
           <Spacer />
           <Box>
-            <ButtonLink href="/test" variant="blue" mt={5} mr={5}>
+            <Button variant="blue" mt={5} mr={5}>
               Create
-            </ButtonLink>
+            </Button>
           </Box>
         </Flex>
         <Center>

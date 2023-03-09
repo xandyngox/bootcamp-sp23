@@ -1,10 +1,9 @@
 import React from "react";
-import { Flex, IconButton, Box, Heading } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { Button } from "@chakra-ui/react";
 
 export default function MyCard() {
   return (
-    <Box
+    <Button
       textAlign="left"
       width="150px"
       height="150px"
