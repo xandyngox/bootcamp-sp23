@@ -37,7 +37,7 @@ export default function Home() {
 
   const addCard = () => {
     const newId = cards.length;
-    const newDescription = text.split(" ").slice(0, 5).join(" ");
+    const newDescription = text.split(" ").slice(-5).join(" ");
     const newCard = { id: newId, description: newDescription };
     setCards([...cards, newCard]);
   };
