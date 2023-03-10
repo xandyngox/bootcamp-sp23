@@ -1,36 +1,131 @@
-import { Box, Stack, Heading } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/layout";
+import {
+  Center,
+  Flex,
+  Spacer,
+  Button,
+  VStack,
+  Image,
+  HStack,
+  SimpleGrid,
+  ModalOverlay,
+  Modal,
+  Input,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Head from "next/head";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 
-import ButtonLink from "../components/utils/ButtonLink";
-import NextLink from "../components/utils/NextLink";
+import Card from "../components/utils/Card";
 
 export default function Home() {
-  const [child, setChild] = useState<object | null>(null);
+  const [text, setText] = useState("");
+  const [cards, setCards] = useState([]);
+
+  // const removeCard = (deleteId: number) => {
+  //   delete cards.find(({ id }) => id === deleteId);
+  // };
+
+  const renderedCards = cards.map((item) => (
+    <Card description={item.description} />
+  ));
+
+  const addCard = () => {
+    const newId = cards.length;
+    const newDescription = text.split(" ").slice(-5).join(" ");
+    const newCard = { id: newId, description: newDescription };
+    setCards([...cards, newCard]);
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handlenewpage = () => {
+    // Call all the functions you want to trigger
+    addCard();
+    onClose();
+  };
+
   return (
     <>
       <Head>
-        <title>TODO: page title</title>
+        <title>Create. Explore.</title>
       </Head>
-      <Stack p={4}>
-        <Heading>WDB Next.js Template</Heading>
-        <Box>
-          <Button variant="blue" onClick={() => setChild({})}>
-            {(child as ReactNode) ?? "Test error handling"}
-          </Button>
+
+      <Box height="100vh" backgroundColor="notiom.lgrey">
+        <Flex>
+          <Box mt={5} ml={5}>
+            <HStack>
+              <Image boxSize="40px" src="/Vector.jpg" alt="Vector.jpg" />
+              <Heading fontSize="30px" color="notiom.dgrey">
+                Notiom
+              </Heading>
+            </HStack>
+          </Box>
+          <Spacer />
+          <Box>
+            <Button onClick={onOpen} variant="blue" mt={5} mr={5}>
+              Create
+            </Button>
+          </Box>
+        </Flex>
+        <Center>
+          <VStack spacing="43px" my={20}>
+            <Heading fontWeight="600" fontSize="60px" color="notiom.dgrey">
+              Create. Explore.
+            </Heading>
+            <Heading fontWeight="500" fontSize="40px" color="notiom.dgrey">
+              The document editing software you’ve been waiting for
+            </Heading>
+          </VStack>
+        </Center>
+        <Box minHeight="50vh" backgroundColor="white">
+          {/* centering cards grid */}
+          <Center w="100%">
+            {/* grid of cards */}
+            <SimpleGrid columns={6} spacing={10} padding="50px">
+              <Button
+                onClick={onOpen}
+                textAlign="left"
+                width="150px"
+                height="150px"
+                backgroundColor="notiom.blue"
+                borderRadius="10px"
+                backgroundImage="/CardButton.svg"
+              />
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Create new card</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Input
+                      placeholder="Type your new document here!"
+                      size="sm"
+                      onChange={(e) => setText(e.target.value)}
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button
+                      backgroundColor="notiom.blue"
+                      color="white"
+                      mr={3}
+                      onClick={handlenewpage}
+                    >
+                      Create
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              {renderedCards}
+            </SimpleGrid>
+          </Center>
         </Box>
-        <Box>
-          <ButtonLink href="/test" variant="blue">
-            Test Navigation
-          </ButtonLink>
-        </Box>
-        <Box>
-          <NextLink href="/random-route" color="TODO.blue">
-            Test 404 Page
-          </NextLink>
-        </Box>
-      </Stack>
+      </Box>
     </>
   );
 }
