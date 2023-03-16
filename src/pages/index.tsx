@@ -27,12 +27,23 @@ export default function Home() {
   const [text, setText] = useState("");
   const [cards, setCards] = useState([]);
 
-  // const removeCard = (deleteId: number) => {
-  //   delete cards.find(({ id }) => id === deleteId);
-  // };
+  const removeCard = (deleteId: number) => {
+    const updatedCards = cards;
+    for (let i = 0; i < updatedCards.length; i++) {
+      if (updatedCards[i].id === deleteId) {
+        updatedCards.splice(i, 1);
+        break;
+      }
+    }
+    setCards(updatedCards);
+  };
 
   const renderedCards = cards.map((item) => (
-    <Card description={item.description} />
+    <Card
+      deleteFunction={removeCard}
+      id={item.id}
+      description={item.description}
+    />
   ));
 
   const addCard = () => {
