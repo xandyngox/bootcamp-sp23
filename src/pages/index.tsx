@@ -18,17 +18,26 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useForceUpdate } from "framer-motion";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Card from "../components/utils/Card";
 
 export default function Home() {
   const [text, setText] = useState("");
   const [cards, setCards] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const addCard = () => {
+    const newId = cards.length;
+    const newDescription = text.split(" ").slice(-5).join(" ");
+    const newCard = { id: newId, description: newDescription };
+    setCards([...cards, newCard]);
+  };
 
   const removeCard = (deleteId: number) => {
-    const updatedCards = cards;
+    const updatedCards = [...cards];
     for (let i = 0; i < updatedCards.length; i++) {
       if (updatedCards[i].id === deleteId) {
         updatedCards.splice(i, 1);
@@ -45,15 +54,6 @@ export default function Home() {
       description={item.description}
     />
   ));
-
-  const addCard = () => {
-    const newId = cards.length;
-    const newDescription = text.split(" ").slice(-5).join(" ");
-    const newCard = { id: newId, description: newDescription };
-    setCards([...cards, newCard]);
-  };
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handlenewpage = () => {
     // Call all the functions you want to trigger

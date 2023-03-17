@@ -9,9 +9,10 @@ interface CardProps {
 }
 
 export default function MyCard({ description, deleteFunction, id }: CardProps) {
-  const deleteId = () => {
+  const handleClick = () => {
     deleteFunction(id);
   };
+
   return (
     <Box
       textAlign="left"
@@ -24,7 +25,7 @@ export default function MyCard({ description, deleteFunction, id }: CardProps) {
     >
       <Flex padding="5px 5px 0px 0px" direction="row-reverse">
         <IconButton
-          onClick={deleteId}
+          onClick={handleClick}
           size="xs"
           background="notiom.lgrey"
           color="notiom.mgrey"
