@@ -18,9 +18,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useForceUpdate } from "framer-motion";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Card from "../components/utils/Card";
 
