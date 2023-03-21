@@ -4,7 +4,7 @@ import { CloseIcon } from "@chakra-ui/icons";
 
 interface CardProps {
   description: string;
-  deleteFunction;
+  deleteFunction: Function;
   id: number;
 }
 

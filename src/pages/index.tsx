@@ -24,8 +24,13 @@ import { useState } from "react";
 import Card from "../components/utils/Card";
 
 export default function Home() {
+  interface Card {
+    id: number;
+    description: string;
+  }
+
   const [text, setText] = useState("");
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const addCard = () => {
