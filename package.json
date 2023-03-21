@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "prettier . --write --cache --loglevel warn && next lint --fix",
     "lint-ci": "prettier . --check && next lint",
-    "depcheck": "depcheck --skip-missing --ignores '@types/*'",
+    "depcheck": "depcheck --skip-missing --ignores 'typescript, @types/*'",
     "clean": "git clean -dfX",
     "prepare": "husky install"
   },
@@ -22,15 +22,15 @@
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-error-boundary": "^3.1.4"
+    "react-error-boundary": "^3.1.4",
+    "typescript": "5.0.2"
   },
   "devDependencies": {
     "@types/node": "18.7.16",
     "@types/react": "18.0.18",
     "depcheck": "^1.4.3",
     "husky": "^8.0.1",
-    "prettier": "^2.7.1",
-    "typescript": "5.0.2"
+    "prettier": "^2.7.1"
   },
   "packageManager": "yarn@3.4.1",
   "engines": {
