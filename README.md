@@ -146,3 +146,13 @@ This is a list of recommended VS Code extensions that will make development easi
 - [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv) - enables syntax highlighting for `.env` files
 - [JavaScript Language Support](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel) - enables syntax highlighting for JavaScript/TypeScript files
 - [Auto Rename Tag](formulahendry.auto-rename-tag) - automatically renames matching opening and closing tags when you rename one of them (definitely the most optional one on this list)
+
+# Running the server for the API
+- cd into /server
+- run the command 'node server.js'. This will start the server and connect to database
+- now use postman or anything to make calls to the endpoint
+- example: GET http://localhost:3000/docs/ will return the list of all docs
+- example: POST http://localhost:3000/docs/ with a JSON body of {"doc_id": 3, "description": "test"}
+- example: PATCH http://localhost:3000/docs/3 with a JSON body of {"description": "overwrite" }
+- example: DELETE http://localhost:3000/docs/3 to delete the doc with doc_id of 3
+
